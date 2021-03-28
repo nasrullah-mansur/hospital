@@ -1,0 +1,53 @@
+/*
+------------- Table of content ----------------
+
+Template Name: Consultation Responsive  HTML5 Template
+Template URI: http://zainiklab.com
+Description: Consultation Responsive  HTML5 Template
+Author: Gobinda Sarkar
+Author URI: http://consultation.com
+Version: 1.0
+
+---------------------- common content ----------
+1.body reset content
+2.header area
+3.registration-area
+4.main-sidebar
+5.user-profile
+6.previous-ticketing
+7.primary-table
+7.button
+8.view-ticketing
+9.primary-form
+10.trace-analysis
+11.card-box
+12.recent-activity
+13.patient-profile
+
+
+*/
+
+// variable
+@import "variable/_variable.scss";
+
+// mixin
+@import "mixin/_mixin.scss";
+
+// body reset content
+@import "reset/_predefine.scss";
+
+// component content
+@import "section/header/header";
+@import "section/registration/registration";
+@import "section/main-sidebar/main-sidebar";
+@import "section/user-profile/user-profile";
+@import "section/primary-table/primary-table";
+@import "section/button/button";
+@import "section/view-ticketing/view-ticketing";
+@import "section/primary-form/primary-form";
+@import "section/trace-analysis/trace-analysis";
+@import "section/card-box/card-box";
+@import "section/recent-activity/recent-activity";
+@import "section/patient-profile/patient-profile";
+
+// page content

@@ -1,0 +1,134 @@
+/*-------------------------
+9.primary-form
+--------------------------*/
+.primary-form {
+     .form-title {
+          font-size: 1.8rem;
+          font-weight: 500;
+          text-transform: capitalize;
+          color: #2E3133;
+          border-bottom: 1px solid #F0F2F2;
+          padding-bottom: 10px;
+          margin-bottom: 30px;
+     }
+     .user-info {
+          margin-bottom: 3rem;
+          .user-image {
+               display: inline-block;
+               position: relative;
+               img {
+                    width: 12rem;
+                    height: 12rem;
+                    border-radius: 50%;
+               }
+               .edit-btn {
+                    display: inline-block;
+                    position: absolute;
+                    bottom: 5px;
+                    right: 0;
+                    width: 3.5rem;
+                    height: 3.5rem;
+                    line-height: 3.5rem;
+                    border-radius: 50%;
+                    color: var(--white);
+                    background: var(--primary-color);
+                    text-align: center;
+                    transition: $transition;
+                    cursor: pointer;
+                    &:hover {
+                         background: var(--hover-color);
+                         color: var(--white);
+                    }
+               }
+          }
+     }
+     .form-group {
+          position: relative;
+          margin-bottom: 2.5rem;
+          .label-text {
+               margin-bottom: .8rem;
+               font-size: 1.6rem;
+               font-weight: 400;
+               text-transform: capitalize;
+               color: #2E3133;
+          }
+          .form-control {
+               width: 100%;
+               height: 5rem;
+               border: none;
+               background: #F7FAFB;
+               border-radius: 5px;
+               font-family: $bodyFont;
+               font-size: 1.5rem;
+               font-weight: 400;
+               color: #797A7A;
+               padding: 1.5rem 2.5rem;
+          }
+          .uplodephoto-box {
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+               width: 100%;
+               height: 30rem;
+               border: none;
+               background: #F7FAFB;
+               border-radius: 5px;
+               font-family: $bodyFont;
+               font-size: 1.5rem;
+               font-weight: 400;
+               color: #797A7A;
+               border: 1px solid #E9EAEB;
+               cursor: pointer;
+               text-align: center;
+               .img-icon {
+                    font-size: 4rem;
+                    color: #797A7A;
+               }
+               .drag-drop-text {
+                    font-size: 1.5rem;
+                    font-weight: 400;
+                    color: #797A7A;
+                    margin: 10px 0;
+               }
+               .browse-btn {
+                    display: inline-block;
+                    background: #FFFFFF;
+                    box-shadow: 0px 0px 6px rgba(149, 160, 166, 0.1);
+                    border-radius: 5px;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    color: #18A9F1;
+                    padding: 10px 15px;
+                    transition: $transition;
+                    &:hover {
+                         color: var(--white);
+                         background: var(--primary-color);
+                    }
+               }
+          }
+          .form-control-file {
+               display: none;
+          }
+          .message-box {
+               height: 200px;
+               resize: none;
+          }
+          .input-icon {
+               position: absolute;
+               right: 20px;
+               bottom: 16px;
+               z-index: 2;
+               cursor: pointer;
+          }
+     }
+}
+@media (max-width: 375px) {
+ .primary-form .primary-btn {
+     display: block;
+     width: 100%;
+     text-align: center;
+     font-size: 1.6rem;
+ }
+}

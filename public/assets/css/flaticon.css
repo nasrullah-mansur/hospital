@@ -1,0 +1,86 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("../fonts/flaticon.ttf?64dabe1a002c074bb630c53979b05517") format("truetype"),
+    url("../fonts/flaticon.woff?64dabe1a002c074bb630c53979b05517") format("woff"),
+    url("../fonts/flaticon.woff2?64dabe1a002c074bb630c53979b05517") format("woff2"),
+    url("../fonts/flaticon.eot?64dabe1a002c074bb630c53979b05517#iefix") format("embedded-opentype"),
+    url("../fonts/flaticon.svg?64dabe1a002c074bb630c53979b05517#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-arrow-angle-pointing-to-right:before {
+    content: "\f101";
+}
+.flaticon-arrow-down-sign-to-navigate:before {
+    content: "\f102";
+}
+.flaticon-bell:before {
+    content: "\f103";
+}
+.flaticon-calendar-1:before {
+    content: "\f104";
+}
+.flaticon-calendar:before {
+    content: "\f105";
+}
+.flaticon-call-center-agent:before {
+    content: "\f106";
+}
+.flaticon-clock:before {
+    content: "\f107";
+}
+.flaticon-dashboard:before {
+    content: "\f108";
+}
+.flaticon-hand-cut:before {
+    content: "\f109";
+}
+.flaticon-heart:before {
+    content: "\f10a";
+}
+.flaticon-hold:before {
+    content: "\f10b";
+}
+.flaticon-left-arrow-angle-big-gross-symbol:before {
+    content: "\f10c";
+}
+.flaticon-logout:before {
+    content: "\f10d";
+}
+.flaticon-private:before {
+    content: "\f10e";
+}
+.flaticon-reply:before {
+    content: "\f10f";
+}
+.flaticon-settings:before {
+    content: "\f110";
+}
+.flaticon-speech-bubble:before {
+    content: "\f111";
+}
+.flaticon-star:before {
+    content: "\f112";
+}
+.flaticon-support:before {
+    content: "\f113";
+}
+.flaticon-up-arrow:before {
+    content: "\f114";
+}
+.flaticon-user:before {
+    content: "\f115";
+}
+.flaticon-view:before {
+    content: "\f116";
+}

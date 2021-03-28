@@ -1,0 +1,121 @@
+/*-------------------------
+4.main-sidebar
+--------------------------*/
+.main-sidebar {
+     position: fixed;
+     left: 0;
+     top: 0;
+     width: 250px;
+     height: 100vh;
+     background: #FFFFFF;
+     box-shadow: 2px 0px 25px rgba(6, 61, 88, 0.08);
+     z-index: 9;
+     padding-bottom: 3rem;
+     transition: $transition;
+     .main-sidebar-body {
+          padding: 3rem 0;
+          overflow-y: scroll ;
+          -ms-overflow-style: none;  
+          scrollbar-width: none;  
+          height: 85%;
+          &::-webkit-scrollbar {
+               display: none;
+          }
+     }
+     &.show {
+          margin-left: 0;
+     }
+     .sidemenu-logo {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 100px;
+          padding-left: 2.5rem;
+     }
+     .main-menu {
+          ul {
+               margin: 0;
+               padding: 0;
+               li {
+                    display: block;
+                    list-style: none;
+                    a {
+                         display: flex;
+                         align-items: center;
+                         position: relative;
+                         height: 5rem;
+                         margin-bottom: 1.5rem;
+                         padding: 1.1rem 2.5rem;
+                         font-size: 1.6rem;
+                         line-height: 1;
+                         font-weight: 500;
+                         text-transform: capitalize;
+                         color: #797A7A;
+                         &::before {
+                              position: absolute;
+                              content: '';
+                              width: 4px;
+                              height: 0;
+                              top: 0;
+                              right: 0;
+                              background: var(--primary-color);
+                              opacity: 0;
+                              transition: $transition;
+                         }
+                         i {
+                              margin-right: 1rem;
+                              &::before {
+                                   font-size: 1.8rem;
+                                   line-height: 1;
+                              }
+                         }
+                         &:hover {
+                              background: #F2FBFF;
+                              color: var(--primary-color);
+                              &::before {
+                                   height: 100%;
+                                   opacity: 1;
+                              }
+                         }
+                    }
+                    &.current-menu-item {
+                         a {
+                              background: #F2FBFF;
+                              color: var(--primary-color);
+                              &::before {
+                                   height: 100%;
+                                   opacity: 1;
+                              }
+                         }
+                    }
+                    ul {
+                         li {
+                              &:last-child {
+                                   a {
+                                        margin-bottom: 1.5rem;
+                                   }
+                              }
+                              a {
+                                   padding-left: 4rem;
+                                   padding-right: 1rem;
+                                   margin-bottom: 0;
+                              }
+                         }
+                    }
+               }
+          }
+     }
+}
+@media (max-width: 1199px) {
+     .main-sidebar {
+          margin-left: -250px;
+     }
+}
+@media  (max-width: 767px) {
+     .main-sidebar .sidemenu-logo {
+          height: 80px;
+     }
+     .main-sidebar .main-menu ul li a {
+          font-size: 1.4rem;
+     }
+}

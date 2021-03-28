@@ -1,0 +1,44 @@
+/*-------------------------
+12.recent-activity
+--------------------------*/
+.recent-activity-area {
+     .activity-title {
+          margin-bottom: 1.5rem;
+          font-size: 2rem;
+          font-weight: 600;
+          text-transform: capitalize;
+          color: #2E3133;
+     }
+     .activity-list {
+          margin: 0;
+          padding: 0;
+          li {
+               list-style: none;
+               border-bottom: 1px solid #F0F2F2;
+               padding: 1.5rem 0;
+               &:last-child {
+                    padding-bottom: 0;
+                    border-bottom: none;
+               }
+               .patient-image {
+                    width: 4rem;
+                    height: 4rem;
+                    border-radius: 50%;
+               }
+               .patient-name {
+                    margin-bottom: 8px;
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                    color: #2E3133;
+               }
+               .active-titme {
+                    display: block;
+                    margin: 0;
+                    font-size: 1.2rem;
+                    line-height: 1;
+                    font-weight: 400;
+                    color: #797A7A;
+               }
+          }
+     }
+}

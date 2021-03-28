@@ -1,0 +1,78 @@
+/*-------------------------
+11.card-box
+--------------------------*/
+.card-box {
+     background: #FFFFFF;
+     border-radius: 5px;
+     padding: 2.5rem;
+     margin-bottom: 3rem;
+     .card-icon {
+          margin-bottom: 2rem;
+          display: grid;
+          place-items: center;
+          justify-content: center;
+          align-items: center;
+          width: 7rem;
+          height: 7rem;
+          text-align: center;
+          border-radius: 50%;
+          background: #D9F2FF;
+          color: #18A9F1;
+          i {
+               line-height: 1;
+               &::before {
+                    font-size: 3rem;
+                    line-height: 1;
+               }
+          }
+     }
+     h4 {
+          margin-bottom: 10px;
+          font-size: 1.6rem;
+          font-weight: 500;
+          text-transform: capitalize;
+          color: #797A7A;
+     }
+     h2 {
+          font-size: 2.8rem;
+          line-height: 1;
+          font-weight: 600;
+          color: #18A9F1;
+          margin: 0;
+     }
+     &.done-card {
+          .card-icon {
+               background: #FFD9E7;
+               color: #F21868;
+          }
+          h2 {
+               color: #F21868;
+          }
+     }
+     &.due-card {
+          .card-icon {
+               background: #ECD9FF;
+               color: #8518F2;
+          }
+          h2 {
+               color: #8518F2;
+          }
+     }
+     &.hold-card {
+          .card-icon {
+               background: #FFE9D9;
+               color: #F27318;
+          }
+          h2 {
+               color: #F27318;
+          }
+     }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+     .card-box {
+          padding: 2.5rem 1.5rem; 
+     }
+	.card-box h4 {
+          font-size: 1.4rem;
+     }
+}

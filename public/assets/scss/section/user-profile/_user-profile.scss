@@ -1,0 +1,109 @@
+/*-------------------------
+5.user-profile
+--------------------------*/
+.user-profile-area {
+     .profile-top {
+          position: relative;
+          padding-bottom: 3rem;
+          margin-bottom: 2rem;
+          border-bottom: 1px solid #F0F2F2;
+          .edit-profile {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               text-align: center;
+               position: absolute;
+               top: 0;
+               right: 0;
+               width: 63px;
+               height: 33px;
+               border-radius: 5px;
+               background: #EDFAFF;
+               font-size: 1.4rem;
+               font-weight: 500;
+               color: var(--primary-color);
+               text-transform: capitalize;
+               transition: $transition;
+               i {
+                    margin-right: 5px;
+               }
+               &:hover {
+                    color: var(--white);
+                    background: var(--primary-color);
+               }
+          }
+          .profile-image {
+               width: 14rem;
+               height: 14rem;
+               border-radius: 50%;
+               margin: 0 auto;
+               margin-bottom: 2.3rem;
+          }
+          h3 {
+               margin-bottom: 1rem;
+               font-size: 2rem;
+               font-weight: 600;
+               text-transform: capitalize;
+               color: #2E3133;
+          }
+          p {
+               margin: 0;
+               font-size: 1.5rem;
+               line-height: 1;
+               font-weight: 400;
+               color: #797A7A;
+          }
+     }
+     .profile-info {
+          .table {
+               width: 100%;
+               margin: 0;
+               tr {
+                    td {
+                         padding: 5px 0;
+                         &:first-child {
+                              min-width: 180px
+                         }
+                         span {
+                              font-size: 1.6rem;
+                              font-weight: 400;
+                              color: #797A7A;
+                              text-transform: capitalize;
+                         }
+                         p {
+                              margin: 0;
+                              font-size: 1.6rem;
+                              line-height: 2.6rem;
+                              font-weight: 500;
+                              color: #656666;
+                         }
+                    }
+               }
+          }
+     }
+}
+@media (min-width: 1200px) and (max-width: 1500px)  {
+     .user-profile-area .profile-info .table tr td:first-child {
+          min-width: 100px;
+     }
+}
+@media (max-width: 1199px)  {
+     .user-profile-area .profile-info .table tr td:first-child {
+          min-width: 140px;
+     }
+}
+@media (max-width: 480px) {
+     .user-profile-area .profile-info .table tr td p {
+          font-size: 1.4rem;
+          line-height: 2.4rem;
+     }
+     .user-profile-area .profile-info .table tr td span {
+          font-size: 1.4rem;
+     }
+     .user-profile-area .profile-info .table tr td:first-child {
+          min-width: 115px;
+     }
+     .user-profile-area .profile-info .table tr td:last-child {
+          min-width: 250px;
+     }
+}

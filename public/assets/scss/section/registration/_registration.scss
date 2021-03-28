@@ -1,0 +1,147 @@
+/*-------------------------
+3.registration-area
+--------------------------*/
+.registration-area {
+     padding: 5rem 0;
+     .registration-wrap {
+          background: #F1F6F8;
+          box-shadow: 0px 4px 80px rgba(6, 61, 88, 0.08);
+     }
+     .registration-info {
+          padding: 4rem;
+          .registration-img {
+               margin-bottom: 5.5rem;
+          }
+          p {
+               margin: 0;
+               font-size: 1.6rem;
+               line-height: 2.6rem;
+               color: #797A7A;
+          }
+     }
+}
+.registration-form {
+     min-height: 824px;
+     background: var(--white);
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     padding: 4rem;
+     .form-title {
+          margin-bottom: 4.7rem;
+          font-size: 3rem;
+          line-height: 4.2rem;
+          font-weight: 600;
+          text-transform: capitalize;
+          color: #2E3133;
+     }
+     .form-group  {
+          position: relative;
+          margin-bottom: 15px;
+          .form-control {
+               width: 100%;
+               height: 5.5rem;
+               background: #F7FAFB;
+               border-radius: .5rem;
+               padding: 1rem 2rem;
+               border: none;
+               font-family: $bodyFont;
+               font-size: 1.6rem;
+               font-weight: 400;
+               color: #797A7A;
+          }
+          .message-box {
+               padding: 1.5rem 2rem;
+               height: 10rem;
+               resize: none;
+          }
+          .icon {
+               position: absolute;
+               right: 2rem;
+               bottom: 2rem;
+               pointer-events: none;
+          }
+     }
+     .form-privacy-text {
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: #797A7A;
+          a {
+               color: var(--primary-color);
+               text-transform: capitalize;
+               transition: $transition;
+               &:hover {
+                    color: var(--hover-color);
+               }
+          }
+     }
+     .registration-btn {
+          display: block;
+          width: 100%;
+          padding: 1.4rem 1rem;
+          text-align: center;
+          background: var(--primary-color);
+          border: none;
+          font-size: 1.8rem;
+          font-weight: 600;
+          text-transform: capitalize;
+          color: var(--white);
+          transition: $transition;
+          border-radius: .5rem;
+          &:hover {
+               background: var(--hover-color);
+               color: var(--white);
+          }
+     }
+     .forgot-password {
+          display: inline-block;
+          margin-bottom: 2.3rem;
+          font-size: 1.5rem;
+          font-weight: 400;
+          text-transform: capitalize;
+          color: var(--primary-color);
+          transition: $transition;
+          &:hover {
+               color: var(--hover-color);
+          }
+     }
+     .form-bottom-text {
+          margin-top: 3.3rem;
+          margin-bottom: 0;
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: #797A7A;
+          a {
+               text-transform: capitalize;
+               color: var(--primary-color);
+               transition: $transition;
+               &:hover {
+                    color: var(--hover-color);
+               }
+          }
+     }
+}
+@media (max-width:1199px) {
+     .registration-form {
+          min-height: 560px;
+     }
+}
+@media (max-width:991px) {
+     .registration-form .form-title {
+          margin-bottom: 3.5rem;
+          font-size: 2.6rem;
+          line-height: 3.2rem;
+     }
+     .registration-area {
+          padding: 3rem 0;
+     }
+}
+@media (max-width: 575px) {
+     .registration-form {
+          min-height: auto;
+          padding: 4rem 2rem;
+     }
+     .registration-form .form-bottom-text {
+          font-size: 1.3rem;
+     }
+}

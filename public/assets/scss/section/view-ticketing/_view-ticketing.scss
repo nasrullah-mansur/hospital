@@ -1,0 +1,73 @@
+/*-------------------------
+8.view-ticketing
+--------------------------*/
+.view-ticketing {
+     .single-ticketing {
+          border-bottom: 1px solid #F0F2F2;
+          padding: 3rem 0;
+          .ticketing-top {
+               margin-bottom: 3rem;
+          }
+          .user-info {
+               .user-image {
+                    width: 4.5rem;
+                    height: 4.5rem;
+                    border-radius: 50%;
+               }
+               h4 {
+                    margin-bottom: 5px;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                    color: #2E3133;
+               }
+               p {
+                    margin: 0;
+                    font-size: 1.2rem;
+                    line-height: 1;
+                    font-weight: 400;
+                    text-transform: capitalize;
+                    color: #797A7A
+               }
+          }
+          &:last-child {
+               border-bottom: none;
+               padding-bottom: 0;
+          }
+          p {
+               margin-bottom: 2.5rem;
+               font-size: 1.6rem;
+               line-height: 2.6rem;
+               color: #797A7A;
+              &:last-child {
+                   margin-bottom: 0;
+              }
+          }
+          h3 {
+               margin-bottom: 2.5rem;
+               font-size: 2rem;
+               font-weight: 500;
+               text-transform: capitalize;
+               color: #2E3133;
+          }
+     }
+     .status-select {
+          .change-ticketing {
+               width: 310px;
+               height: 45px;
+               border-radius: 5px;
+               background: #F7FAFB;
+               font-family: $bodyFont;
+               font-size: 1.6rem;
+               font-weight: 400;
+               color: #797A7A;
+               padding: 1rem 1.5rem;
+               border: none;
+          }
+     }
+}
+@media (max-width: 575px) {
+     .view-ticketing .status-select .change-ticketing {
+          margin-top: 15px;
+     }
+}

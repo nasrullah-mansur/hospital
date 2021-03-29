@@ -1023,6 +1023,10 @@ ul {
   margin-left: 0;
 }
 
+.primary-table .dataTables_wrapper {
+  overflow-y: hidden;
+}
+
 .primary-table .status-new {
   color: #13BF4D;
 }
@@ -1183,6 +1187,10 @@ table.dataTable.no-footer {
 /*-------------------------
 8.view-ticketing
 --------------------------*/
+.view-ticketing {
+  position: relative;
+}
+
 .view-ticketing .single-ticketing {
   border-bottom: 1px solid #F0F2F2;
   padding: 3rem 0;
@@ -1239,8 +1247,16 @@ table.dataTable.no-footer {
   color: #2E3133;
 }
 
+.view-ticketing .status-select {
+  position: absolute;
+  right: 3rem;
+  top: 1.5rem;
+  display: inline-block;
+}
+
 .view-ticketing .status-select .change-ticketing {
-  width: 310px;
+  padding: 0 1.5rem;
+  min-width: 120px;
   height: 45px;
   border-radius: 5px;
   background: #F7FAFB;
@@ -1250,6 +1266,13 @@ table.dataTable.no-footer {
   color: #797A7A;
   padding: 1rem 1.5rem;
   border: none;
+}
+
+.view-ticketing .status-select .dropdown-menu {
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #797A7A;
 }
 
 @media (max-width: 575px) {

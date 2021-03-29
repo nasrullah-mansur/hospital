@@ -2,6 +2,7 @@
 8.view-ticketing
 --------------------------*/
 .view-ticketing {
+     position: relative;
      .single-ticketing {
           border-bottom: 1px solid #F0F2F2;
           padding: 3rem 0;
@@ -52,8 +53,13 @@
           }
      }
      .status-select {
+          position: absolute;
+          right: 3rem;
+          top: 1.5rem;
+          display: inline-block;
           .change-ticketing {
-               width: 310px;
+               padding: 0 1.5rem;
+               min-width: 120px;
                height: 45px;
                border-radius: 5px;
                background: #F7FAFB;
@@ -63,6 +69,12 @@
                color: #797A7A;
                padding: 1rem 1.5rem;
                border: none;
+          }
+          .dropdown-menu {
+               width: 100%;
+               font-size: 1.4rem;
+               font-weight: 400;
+               color: #797A7A;
           }
      }
 }

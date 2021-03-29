@@ -6,16 +6,16 @@
     <div class="section-wrap">
         <div class="primary-form">
         <h2 class="form-title">Personal Information</h2>
-        <form action="{{ route('profile.full.update', [Auth::user()->id, $profile->slug]) }}" method="POST">
+        <form action="{{ route('profile.full.update', [Auth::user()->id, $profile->slug]) }}" method="POST" enctype="multipart/form-data">
             <div class="row">
                 @csrf
                 <div class="col-lg-12">
                     <div class="user-info">
                     <div class="user-image">
-                        <img src="{{ asset('assets/images/profile-image.png') }}" alt="profile" />
+                        <img id="preview-img" src="{{ $profile->image == null ? Avatar::create($profile->full_name)->toBase64() : asset($profile->image) }}" alt="profile" />
                         <div class="uplode-image">
                         <label for="edit-image" class="edit-btn"><i class="fas fa-pencil-alt"></i></label>
-                        <input type="file" id="edit-image" class="d-none" />
+                        <input type="file" id="edit-image" name="image" class="d-none" />
                         </div>
                     </div>
                     </div>
@@ -67,14 +67,32 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                    <label class="label-text" for="Age">Age</label>
-                    <input type="number" class="form-control" id="Age" name="age" placeholder="38 Years" value="{{ old('age') ? old('age') : $profile->age }}" />
-                    @if($errors->has('age'))
-                    <span style="color: red;">{{ $errors->first('age') }}</span>
-                    @endif
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label class="label-text" for="Age">Age</label>
+                                <input type="number" class="form-control" id="Age" name="age" placeholder="38 Years" value="{{ old('age') ? old('age') : $profile->age }}" />
+                                @if($errors->has('age'))
+                                <span style="color: red;">{{ $errors->first('age') }}</span>
+                                @endif
+                                </div>
+                        </div>
+    
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                            <label class="label-text" for="Gender">Gender</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option>Gender</option>
+                                <option value="male" {{ $profile->gender == 'male' ? 'selected' : '' }}>Male</option>
+                                <option value="female" {{ $profile->gender == 'female' ? 'selected' : '' }}>Female</option>
+                                <option value="other" {{ $profile->gender == 'other' ? 'selected' : '' }}>Other</option>
+                            </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                @if(Auth::user()->profile->user_role == 0)
                 <div class="col-lg-12">
                     <div class="form-group">
                     <label class="label-text" for="MedicalHistory">Medical History</label>
@@ -84,6 +102,7 @@
                     @endif
                     </div>
                 </div>
+                @endif
                 
             
                 <div class="col-lg-12">
@@ -126,10 +145,16 @@
                 </div>
             </div>
         </form>
-            
-        
         </div>
     </div>
     </div>
 </div>
+@endsection
+
+@section('custom_js')
+<script>
+    $("#edit-image").change(function() {
+        readURL(this);
+    });
+</script>
 @endsection

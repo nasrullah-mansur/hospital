@@ -5,6 +5,20 @@
     <div class="col-lg-12">
     <div class="section-wrap">
         <div class="view-ticketing">
+        @if(Auth::user()->profile->user_role == 1)
+        <div class="dropdown status-select">
+            <button class="change-ticketing dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Status
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{{ route('status.new', $ticket->id) }}">New</a>
+                <a class="dropdown-item" href="{{ route('status.waiting', $ticket->id) }}">Waiting</a>
+                <a class="dropdown-item" href="{{ route('status.opened', $ticket->id) }}">Opened</a>
+                <a class="dropdown-item" href="{{ route('status.responded', $ticket->id) }}">Responded</a>
+                <a class="dropdown-item" href="{{ route('status.closed', $ticket->id) }}">Closed</a>
+            </div>
+        </div>
+        @endif
         <div class="single-ticketing">
             <div class="ticketing-top">
             <div class="user-info">
@@ -55,12 +69,14 @@
         @endforeach
         @endforeach
 
-
+        @if(count($ticket->answer) > 0 || Auth::user()->profile->user_role == 1)
+        <!-- Replay BTN -->
         <div class="single-ticketing">
             <a href="#replyForm" id="replyBtn" class="primary-btn"><i class="flaticon-reply"></i> Replay</a>
         </div>
+        
 
-        <div class="single-ticketing" id="replyForm">
+        <div class="single-ticketing" style="display: none;" id="replyForm">
             <div class="primary-form">
             <form action="{{ route('ticket.answer') }}" method="POST">
                 @csrf
@@ -83,11 +99,12 @@
             </form>
             </div>
         </div>
+        @endif
 
         </div>
     </div>
-    </div>
-</div>
+
+    
 @endsection
 
 @section('custom_js')

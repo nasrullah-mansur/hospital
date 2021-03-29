@@ -121,6 +121,9 @@
                }
           }
      }
+     .dataTables_wrapper {
+          overflow-y: hidden;
+     }
      .status-new {
           color: #13BF4D;
      }

@@ -18,6 +18,7 @@ class CreateProfilesTable extends Migration
             $table->integer('user_id');
             $table->integer('user_role')->default(0);
             $table->string('full_name');
+            $table->string('image')->nullable();
             $table->string('slug');
             $table->string('phone');
             $table->string('gender')->nullable();

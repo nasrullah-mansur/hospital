@@ -50,7 +50,7 @@
                 <h3 class="section-inner-title">Recent Ticketing</h3>
             </div>
             <div class="col-md-6 text-md-right">
-                <a class="small-btn" href="#">view all</a>
+                <a class="small-btn" href="{{ route('patients.all') }}">view all</a>
             </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                         <div class="patient-area d-flex align-items-center">
                         <input class="table-check" type="checkbox" />
                         <div class="media patient-info">
-                            <img src="{{ asset('assets/images/patient.png') }}" class="mr-3 patient-img" alt="patient" />
+                            <img src="{{ $ticket->user->profile->image == null ? Avatar::create($ticket->user->profile->full_name)->toBase64() : asset($ticket->user->profile->image) }}" class="mr-3 patient-img" alt="patient" />
                             <div class="media-body">
                             <a class="patient-name" href="#">{{ ucwords($ticket->user->profile->full_name) }}</a>
                             </div>
@@ -90,7 +90,7 @@
                         </button>
                         <div class="dropdown-menu" >
                             <a class="dropdown-item" href="{{ route('ticket.show', $ticket->id) }}">View</a>
-                            <a class="dropdown-item" href="#">Delete</a>
+                            <a class="dropdown-item" href="{{ route('ticket.destroy', $ticket->id) }}">Delete</a>
                         </div>
                         </div>
                     </td>

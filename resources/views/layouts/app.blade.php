@@ -16,9 +16,17 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/plugins/extensions/toastr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/css/extensions/toastr.css') }}">
+    @yield('custom_css')
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <script src="{{ asset('assets/js/modernizr-3.11.2.min.js') }}"></script>
+    <style>
+      .DataTable  {
+        max-width: 100%;
+      }
+    </style>
   </head>
   <body>
     <main class="page-wraper">
@@ -35,14 +43,16 @@
                 <a href="{{ route('ticket.create') }}"><i class="menu-icon flaticon-support"></i> New Ticketing</a>
               </li>
               <li>
+                <a href="{{ route('ticket.index') }}"><i class="menu-icon flaticon-support"></i>Ticketing List</a>
+              </li>
+              <li>
+                <a href="{{ route('patients.all') }}"><i class="menu-icon flaticon-support"></i>Patient List</a>
+              </li>
+              <li>
                 <a href="{{ route('profile.edit', [Auth::user()->id, active_user_profile(Auth::user()->id)->slug]) }}"><i class="menu-icon flaticon-user"></i> Edit Profile</a>
               </li>
               <li>
-                <a class="has-arrow" href="#"><i class="menu-icon flaticon-hand-cut"></i> Add Wound Photo</a>
-                <ul>
-                  <li><a href="add-wound-photo.html">Add Wound Photo</a></li>
-                  <li><a href="trace-wound-analysis.html">Trace Wound Analysis</a></li>
-                </ul>
+                <a href="#"><i class="menu-icon flaticon-hand-cut"></i> Add Wound Photo</a>
               </li>
             </ul>
           </nav>
@@ -66,7 +76,7 @@
                 <div class="header-right text-right">
                   <div class="dropdown user-dropdown">
                     <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" >
-                       <span>{{ ucwords(active_user_profile(Auth::user()->id)->full_name) }} </span> <img class="user-image" src="{{ asset('assets/images/user.png') }}" alt="user" />
+                       <span>{{ ucwords(active_user_profile(Auth::user()->id)->full_name) }} </span> <img class="user-image" src="{{ Auth::user()->profile->image == null ? Avatar::create(Auth::user()->profile->full_name)->toBase64() : asset(Auth::user()->profile->image) }}" alt="{{ Auth::user()->profile->full_name }}" />
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <li class="dropdown-item"><a href="{{ route('profile.edit', [Auth::user()->id, active_user_profile(Auth::user()->id)->slug]) }}">Edit Profile</a></li>
@@ -91,16 +101,36 @@
       </div>
       <!-- content-body end here  -->
     </main>
-    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script> -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/vendors/js/extensions/toastr.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script>
        $('#logOutBtn').on('click', function() {
            $('#logOutForm').submit();
        })
+
+       function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          
+          reader.onload = function(e) {
+            $('#preview-img').attr('src', e.target.result);
+          }
+          
+          reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+      }
     </script>
 
     @yield('custom_js')
+    @if(Session::has('success'))
+    <script>
+      toastr.success("{{ Session::get('success') }}")
+    </script>
+    {{ Session::forget('success') }}
+    @endif
   </body>
 </html>

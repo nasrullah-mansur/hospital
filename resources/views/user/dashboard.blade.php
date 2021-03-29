@@ -5,7 +5,7 @@
     <div class="section-wrap md-mb-30">
         <div class="user-profile-area">
         <div class="profile-top text-center">
-            <img class="profile-image" src="{{ asset('assets/images/profile-image.png') }}" alt="profile-image" />
+            <img class="profile-image" src="{{ $user_profile->image == null ? Avatar::create($user_profile->full_name)->toBase64() : asset($user_profile->image) }}" alt="profile-image" />
             <h3>{{ ucwords($user_profile->full_name) }}</h3>
             <p>{{ ucwords($user_profile->address) }}</p>
             <a class="edit-profile" href="{{ route('profile.edit', [Auth::user()->id, $user_profile->slug]) }}"><i class="fas fa-pen"></i>Edit</a>
@@ -83,7 +83,7 @@
                             </button>
                             <div class="dropdown-menu" >
                             <a class="dropdown-item" href="{{ route('ticket.show', $ticket->id) }}">View</a>
-                            <a class="dropdown-item" href="#">Delete</a>
+                            <a class="dropdown-item" href="{{ route('ticket.destroy', $ticket->id) }}">Delete</a>
                             </div>
                         </div>
                         </td>
@@ -97,4 +97,5 @@
     </div>
     </div>
 </div>
+
 @endsection

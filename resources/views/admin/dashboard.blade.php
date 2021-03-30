@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('title')
+ - {{ ucwords(Auth::user()->profile->full_name) }}
+@endsection
+@section('heading')
+Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
+@endsection
+
 @section('custom_css')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/css/extensions/sweetalert.css') }}">
 @endsection
@@ -77,7 +84,7 @@
                         <div class="media patient-info">
                             <img src="{{ $ticket->user->profile->image == null ? Avatar::create($ticket->user->profile->full_name)->toBase64() : asset($ticket->user->profile->image) }}" class="mr-3 patient-img" alt="patient" />
                             <div class="media-body">
-                            <a class="patient-name" href="#">{{ ucwords($ticket->user->profile->full_name) }}</a>
+                            <a class="patient-name" href="{{ route('profile.show', [$ticket->user->profile->user_id, $ticket->user->profile->slug]) }}">{{ ucwords($ticket->user->profile->full_name) }}</a>
                             </div>
                         </div>
                         </div>
@@ -110,60 +117,17 @@
         <div class="recent-activity-area">
         <h2 class="activity-title">Recent Activity</h2>
         <ul class="activity-list">
+            @foreach($notifications as $notification)
             <li>
-            <div class="media align-items-center">
-                <img src="{{ asset('assets/images/activity-1.png') }}" class="mr-3 patient-image" alt="activity">
-                <div class="media-body">
-                <h5 class="patient-name">John Doe Submitted a New Ticket</h5>
-                <span class="active-titme">5 mins ago</span>
+                <div class="media align-items-center">
+                    <img src="{{ notification_image(json_decode($notification->data)->id) }}" class="mr-3 patient-image" alt="activity">
+                    <div class="media-body">
+                    <h5 class="patient-name">{{ json_decode($notification->data)->massage }}</h5>
+                    <span class="active-titme">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                    </div>
                 </div>
-            </div>
             </li>
-            <li>
-            <div class="media align-items-center">
-                <img src="{{ asset('assets/images/activity-2.png') }}" class="mr-3 patient-image" alt="activity">
-                <div class="media-body">
-                <h5 class="patient-name">John Doe Submitted a New Ticket</h5>
-                <span class="active-titme">5 mins ago</span>
-                </div>
-            </div>
-            </li>
-            <li>
-            <div class="media align-items-center">
-                <img src="{{ asset('assets/images/activity-3.png') }}" class="mr-3 patient-image" alt="activity">
-                <div class="media-body">
-                <h5 class="patient-name">John Doe Submitted a New Ticket</h5>
-                <span class="active-titme">5 mins ago</span>
-                </div>
-            </div>
-            </li>
-            <li>
-            <div class="media align-items-center">
-                <img src="{{ asset('assets/images/activity-4.png') }}" class="mr-3 patient-image" alt="activity">
-                <div class="media-body">
-                <h5 class="patient-name">John Doe Submitted a New Ticket</h5>
-                <span class="active-titme">5 mins ago</span>
-                </div>
-            </div>
-            </li>
-            <li>
-            <div class="media align-items-center">
-                <img src="{{ asset('assets/images/activity-5.png') }}" class="mr-3 patient-image" alt="activity">
-                <div class="media-body">
-                <h5 class="patient-name">John Doe Submitted a New Ticket</h5>
-                <span class="active-titme">5 mins ago</span>
-                </div>
-            </div>
-            </li>
-            <li>
-            <div class="media align-items-center">
-                <img src="{{ asset('assets/images/activity-6.png') }}" class="mr-3 patient-image" alt="activity">
-                <div class="media-body">
-                <h5 class="patient-name">John Doe Submitted a New Ticket</h5>
-                <span class="active-titme">5 mins ago</span>
-                </div>
-            </div>
-            </li>
+            @endforeach
         </ul>
         </div>
     </div>

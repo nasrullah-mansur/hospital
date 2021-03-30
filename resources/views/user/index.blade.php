@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@section('title')
+ - All Patient
+@endsection
+@section('heading')
+All Patient List
+@endsection
 @section('custom_css')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/css/extensions/sweetalert.css') }}">
 @endsection

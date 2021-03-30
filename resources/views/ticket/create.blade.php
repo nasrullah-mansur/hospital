@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@section('title')
+ - Create new ticket
+@endsection
+@section('heading')
+Create new ticket
+@endsection
+@section('content')
 @section('content')
 <div class="row">
     <div class="col-lg-12">

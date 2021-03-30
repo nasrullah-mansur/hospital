@@ -5,11 +5,13 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Massage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Ticket extends Model
 {
     use HasFactory;
+    use Notifiable;
     protected $fillable = [
         'user_id','subject', 'massage', 'status'
     ];

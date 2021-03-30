@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+@section('title')
+ - Tickets of {{ $profile->full_name }}
+@endsection
+@section('heading')
+All Tickets - {{ $profile->full_name }}
+@endsection
 @section('content')
 <div class="row">
     <div class="col-lg-12">

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class PhotoController extends Controller
@@ -14,13 +15,16 @@ class PhotoController extends Controller
     {
         $this->middleware('block_user');
         $this->middleware('auth');
-        $this->middleware('user');
+        $this->middleware(['user'], ['except' => [
+            'show',
+            'destroy'
+        ]]);
     }
 
     public function show($id)
     {
         if(Auth::user()->profile->user_role == 1 || Auth::user()->id == $id) {
-            $photos = Photo::where('user_id', $id)->get();
+            $photos = Photo::where('user_id', $id)->paginate(8);
             $name = User::where('id', $id)->firstOrFail()->profile->full_name;
             return view('photos.show', compact('photos', 'name'));
         } else {
@@ -52,5 +56,20 @@ class PhotoController extends Controller
 
         Session::put('success', 'Image  has been updated successfully');
         return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $image = Photo::where('id', $id)->firstOrFail();
+        if(Auth::user()->profile->user_role == 1 || Auth::user()->id == $image->user_id) {
+            if (File::exists($image->image)) {
+                File::delete($image->image);
+            } 
+
+            $image->delete();
+            return redirect()->back();
+        } else {
+            return abort(404);
+        }
     }
 }

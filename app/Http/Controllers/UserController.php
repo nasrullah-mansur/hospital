@@ -38,7 +38,7 @@ class UserController extends Controller
     }
 
     public function all_patients() {
-        $profiles = Profile::orderBy('created_at', 'DESC')->where('user_role', 0)->with('user')->get();
+        $profiles = Profile::where('user_role', 0)->with('user')->get();
 
         return datatables($profiles)
 

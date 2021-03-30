@@ -5,10 +5,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Consultation Responsive  HTML5 Template</title>
-    <meta name="description" content="Consultation Responsive  HTML5 Template " />
-    <meta name="keywords" content="business,corporate, creative, woocommerach, design, gallery, minimal, modern, landing page, cv, designer, freelancer, html, one page, personal, portfolio, programmer, responsive, vcard, one page" />
-    <meta name="author" content="Consultation" />
+    <title>{{ THEME_NAME }} - Register</title>
+    <meta name="description" content="Consultation System" />
+    <meta name="keywords" content="Consultation System" />
+    <meta name="author" content="Consultation System" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
     <!-- fonts file -->
@@ -30,7 +30,7 @@
               <div class="row no-gutters align-items-center">
                 <div class="col-md-6">
                   <div class="registration-form">
-                    <h2 class="form-title">Sign Up to <br /> Company Name</h2>
+                    <h2 class="form-title">Sign Up to <br /> {{ config('app.name') }}</h2>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                       <div class="form-group">
@@ -54,7 +54,6 @@
                 <div class="col-md-6">
                   <div class="registration-info text-center">
                     <img class="registration-img" src="{{ asset('assets/images/registration-image-1.png') }}" alt="registration-image" />
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                   </div>
                 </div>
               </div>

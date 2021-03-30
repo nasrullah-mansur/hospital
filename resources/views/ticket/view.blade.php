@@ -1,3 +1,10 @@
+@extends('layouts.app')
+@section('title')
+ - Ticket of {{ $profile->full_name }}
+@endsection
+@section('heading')
+Ticket - {{ $profile->full_name }}
+@endsection
 @section('custom_css')
 <style>
 .view-ticketing .status-select > a {
@@ -19,7 +26,7 @@
 }
 </style>
 @endsection
-@extends('layouts.app')
+
 @section('content')
 <div class="row">
     <div class="col-lg-12">
@@ -78,7 +85,7 @@
             <div class="ticketing-top">
             <div class="user-info">
                 <div class="media align-items-center">
-                <img src="{{ asset('assets/images/user-2.png') }}" class="user-image mr-3" alt="user" />
+                <img src="{{ $single_reply->user->profile->image == null ? Avatar::create($single_reply->user->profile->full_name)->toBase64() : asset($single_reply->user->profile->image) }}" class="user-image mr-3" alt="user" />
                 <div class="media-body">
                     <h4>{{ ucwords($single_reply->user->profile->full_name) }}</h4>
                     <p>{{ ucwords($single_reply->user->profile->address) }}</p>

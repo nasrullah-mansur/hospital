@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@section('title')
+ - {{ ucwords(Auth::user()->profile->full_name) }}
+@endsection
+@section('heading')
+Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
+@endsection
 @section('content')
 <div class="row">
     <div class="col-lg-6">

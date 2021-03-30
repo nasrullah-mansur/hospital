@@ -1,4 +1,10 @@
 @extends('layouts.app')
+@section('title')
+ - Add Wound Photo
+@endsection
+@section('heading')
+Add Wound Photo
+@endsection
 @section('custom_css')
 <link rel="stylesheet" href="{{ asset('admin/dropify/dist/css/dropify.min.css') }}">
 @endsection

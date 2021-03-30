@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Consultation Responsive  HTML5 Template</title>
-    <meta name="description" content="Consultation Responsive  HTML5 Template " />
-    <meta name="keywords" content="business,corporate, creative, woocommerach, design, gallery, minimal, modern, landing page, cv, designer, freelancer, html, one page, personal, portfolio, programmer, responsive, vcard, one page" />
-    <meta name="author" content="Consultation" />
+    <title>{{ THEME_NAME }} @yield('title')</title>
+    <meta name="description" content="Consultation System" />
+    <meta name="keywords" content="Consultation System" />
+    <meta name="author" content="Consultation System" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
     <!-- fonts file -->
@@ -26,6 +26,17 @@
       .DataTable  {
         max-width: 100%;
       }
+      
+      .pagination {
+        padding-bottom: 30px;
+        padding-top: 30px;
+      }
+
+      .pagination li {
+        width: 45px;
+        font-size: 16px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -37,24 +48,50 @@
         </div>
         <div class="main-sidebar-body">
           <nav class="main-menu">
+            @if(Auth::user()->profile->user_role == 1)
             <ul id="metismenu">
-              <li class="current-menu-item"><a href="{{ route('dashboard') }}"><i class="menu-icon flaticon-dashboard"></i> Dashboard</a></li>
-              <li>
-                <a href="{{ route('ticket.create') }}"><i class="menu-icon flaticon-support"></i> New Ticketing</a>
+              <li class="{{ Route::is('admin.dashboard') ? 'current-menu-item' : '' }}"><a href="{{ route('dashboard') }}"><i class="menu-icon flaticon-dashboard"></i> Dashboard</a></li>
+              <li class="{{ Route::is('ticket.index') ? 'mm-active opened' : '' }}">
+                <a class="has-arrow" href="#"><i class="menu-icon flaticon-support"></i> Ticketing</a>
+                <ul>
+                  <li class="{{ Route::is('ticket.index') ? 'current-menu-item' : '' }}"><a href="{{ route('ticket.index') }}">All Tickets</a></li>
+                </ul>
               </li>
-              <li>
-                <a href="{{ route('ticket.index') }}"><i class="menu-icon flaticon-support"></i>Ticketing List</a>
-              </li>
-              <li>
+              
+              <li class="{{ Route::is('patients.all') ? 'current-menu-item' : '' }}">
                 <a href="{{ route('patients.all') }}"><i class="menu-icon flaticon-support"></i>Patient List</a>
               </li>
-              <li>
+              <li class="{{ Route::is('profile.edit') ? 'current-menu-item' : '' }}">
                 <a href="{{ route('profile.edit', [Auth::user()->id, active_user_profile(Auth::user()->id)->slug]) }}"><i class="menu-icon flaticon-user"></i> Edit Profile</a>
               </li>
-              <li>
-                <a href="{{ route('photo.create') }}"><i class="menu-icon flaticon-hand-cut"></i> Add Wound Photo</a>
-              </li>
             </ul>
+            @else
+            <ul id="metismenu">
+              <li class="{{ Route::is('user.dashboard') ? 'current-menu-item' : '' }}"><a href="{{ route('dashboard') }}"><i class="menu-icon flaticon-dashboard"></i> Dashboard</a></li>
+              <li class="{{ Route::is('p.tickets', 'ticket.create') ? 'mm-active opened' : '' }}">
+                <a class="has-arrow" href="#"><i class="menu-icon flaticon-support"></i> Ticketing</a>
+                <ul>
+                  <li class="{{ Route::is('p.tickets') ? 'current-menu-item' : '' }}">
+                    <a href="{{ route('p.tickets', [Auth::user()->id, Auth::user()->profile->slug]) }}">My Tickets</a>
+                  </li>
+                  <li class="{{ Route::is('ticket.create') ? 'current-menu-item' : '' }}"><a href="{{ route('ticket.create') }}">Add New Ticket</a></li>
+                </ul>
+              </li>
+
+              <li class="{{ Route::is('photo.show', 'photo.create') ? 'mm-active opened' : '' }}">
+                <a class="has-arrow" href="#"><i class="menu-icon flaticon-hand-cut"></i> Wound Photos</a>
+                <ul>
+                  <li class="{{ Route::is('photo.show') ? 'current-menu-item' : '' }}"><a href="{{ route('photo.show', Auth::user()->id) }}">My Wound Photo</a></li>
+                  <li class="{{ Route::is('photo.create') ? 'current-menu-item' : '' }}"><a href="{{ route('photo.create') }}">Add Wound Photo</a></li>
+                </ul>
+              </li>
+              
+              <li class="{{ Route::is('profile.edit') ? 'current-menu-item' : '' }}">
+                <a href="{{ route('profile.edit', [Auth::user()->id, active_user_profile(Auth::user()->id)->slug]) }}"><i class="menu-icon flaticon-user"></i> Edit Profile</a>
+              </li>
+              
+            </ul>
+            @endif
           </nav>
         </div>
       </aside>
@@ -69,7 +106,7 @@
               <div class="col-9 col-md-8 col-sm-8">
                 <div class="header-left d-flex align-items-center ">
                   <a href="#" class="menu-bar d-inline-block d-xl-none"><i class="fas fa-bars"></i></a>
-                  <h2 class="page-title">Dashboard</h2>
+                  <h2 class="page-title">@yield('heading')</h2>
                 </div>
               </div>
               <div class="col-3 col-md-4 col-sm-4">

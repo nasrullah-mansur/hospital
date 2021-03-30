@@ -1,5 +1,11 @@
 @extends('layouts.app')
-
+@section('title')
+ - {{$profile->full_name}}
+@endsection
+@section('heading')
+{{$profile->full_name}}
+@endsection
+@section('content')
 @section('content')
 <div class="row">
     <div class="col-lg-12">

@@ -80,7 +80,7 @@ Route::get('/ticket/status/{id}/closed', [StatusController::class, 'closed'])->n
 Route::get('/wound-photo/create', [PhotoController::class, 'create'])->name('photo.create');
 Route::get('/wound-photo/{id}/show', [PhotoController::class, 'show'])->name('photo.show');
 Route::post('/wound-photo/store', [PhotoController::class, 'store'])->name('photo.store');
-
+Route::get('/wound-photo/{id}/destroy', [PhotoController::class, 'destroy'])->name('photo.destroy');
 
 
 

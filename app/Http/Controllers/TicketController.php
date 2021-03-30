@@ -7,9 +7,12 @@ use App\Models\User;
 use App\Models\Photo;
 use App\Models\Answer;
 use App\Models\Ticket;
+use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Notifications\TicketAdded;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
 
 class TicketController extends Controller
 {
@@ -37,12 +40,13 @@ class TicketController extends Controller
 
     public function p_tickets($id, $slug)
     {
-        return view('ticket.p_tickets', compact('id'));
+        $profile = Profile::where('user_id', $id)->firstOrFail();
+        return view('ticket.p_tickets', compact('id', 'profile'));
     }
 
 
     public function p_tickets_get($id) {
-        $tickets = Ticket::where('user_id', $id)->orderBy('created_at', 'DESC')->get();
+        $tickets = Ticket::where('user_id', $id)->get();
           return datatables($tickets)
                   ->addColumn('name', function ($tickets){
                       $user_info = User::where('id', $tickets->user_id)->firstOrFail();
@@ -184,13 +188,15 @@ class TicketController extends Controller
     public function show($id){
         if(Auth::user()->profile->user_role == 1){
             $ticket = Ticket::with('answer', 'user')->where('id', $id)->firstOrFail();
-            return view('ticket.view', compact('ticket'));
+            $profile = Profile::where('user_id', $id)->firstOrFail();
+            return view('ticket.view', compact('ticket', 'profile'));
         } else {
             $ticket = Ticket::with('answer', 'user')->where('id', $id)->firstOrFail();
             if($ticket->user_id != Auth::user()->id) {
                 abort(404);
             } else {
-                return view('ticket.view', compact('ticket'));
+                $profile = Profile::where('user_id', $id)->firstOrFail();
+                return view('ticket.view', compact('ticket', 'profile'));
             }
         }
     }
@@ -209,8 +215,8 @@ class TicketController extends Controller
         $ticket->user_id = Auth::user()->id;
         $ticket->subject = $request->subject;
         $ticket->massage = $request->massage;
-
         $ticket->save();
+        Notification::send(Auth::user(), new TicketAdded());
         Session::put('success', 'Ticket  has been submitted successfully');
         return redirect()->route('dashboard');
     }

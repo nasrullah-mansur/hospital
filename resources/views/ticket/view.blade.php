@@ -1,4 +1,24 @@
+@section('custom_css')
+<style>
+.view-ticketing .status-select > a {
+    padding: 0 1.5rem;
+    min-width: 120px;
+    height: 45px;
+    border-radius: 5px;
+    background: #F7FAFB;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #797A7A;
+    padding: 1rem 1.5rem;
+    border: none;
+}
 
+.view-ticketing .status-select > .dropdown-menu {
+    max-width: 140px;
+}
+</style>
+@endsection
 @extends('layouts.app')
 @section('content')
 <div class="row">
@@ -7,10 +27,12 @@
         <div class="view-ticketing">
         @if(Auth::user()->profile->user_role == 1)
         <div class="dropdown status-select">
+            <a href="{{ route('photo.show', $ticket->user_id) }}">Wound Photos</a>
+            <a href="{{ route('p.tickets', [$ticket->user_id, $ticket->user->profile->slug]) }}">Others Ticket</a>
             <button class="change-ticketing dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Status
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="{{ route('status.new', $ticket->id) }}">New</a>
                 <a class="dropdown-item" href="{{ route('status.waiting', $ticket->id) }}">Waiting</a>
                 <a class="dropdown-item" href="{{ route('status.opened', $ticket->id) }}">Opened</a>
@@ -23,7 +45,7 @@
             <div class="ticketing-top">
             <div class="user-info">
                 <div class="media align-items-center">
-                <img src="{{ asset('assets/images/user.png') }}" class="user-image mr-3" alt="user" />
+                <img src="{{ $ticket->user->profile->image == null ? Avatar::create($ticket->user->profile->full_name)->toBase64() : asset($ticket->user->profile->image) }}" class="user-image mr-3" alt="user" />
                 <div class="media-body">
                     <h4>{{ ucwords($ticket->user->profile->full_name) }}</h4>
                     <p>{{ $ticket->user->profile->address }}</p>
@@ -40,7 +62,7 @@
             <div class="ticketing-top">
             <div class="user-info">
                 <div class="media align-items-center">
-                <img src="{{ asset('assets/images/user-2.png') }}" class="user-image mr-3" alt="user" />
+                <img src="{{ $answer->user->profile->image == null ? Avatar::create($answer->user->profile->full_name)->toBase64() : asset($answer->user->profile->image) }}" class="user-image mr-3" alt="user" />
                 <div class="media-body">
                     <h4>{{ ucwords($answer->user->profile->full_name) }}</h4>
                     <p>{{ ucwords($answer->user->profile->address) }}</p>

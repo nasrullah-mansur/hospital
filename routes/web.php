@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TicketController;
@@ -43,6 +44,8 @@ Route::get('/tickets', [TicketController::class, 'index'])->name('ticket.index')
 Route::get('/tickets/all-tickets', [TicketController::class, 'all_tickets'])->name('all.tickets');
 Route::get('/ticket/create', [TicketController::class, 'create'])->name('ticket.create');
 Route::post('/ticket/store', [TicketController::class, 'store'])->name('ticket.store');
+Route::get('/ticket/patient/{id}/{slug}', [TicketController::class, 'p_tickets'])->name('p.tickets');
+Route::get('/ticket/p-patient/{id}/get', [TicketController::class, 'p_tickets_get'])->name('p.tickets.get');
 Route::get('/ticket/{id}', [TicketController::class, 'show'])->name('ticket.show');
 Route::get('/ticket/{id}/destroy', [TicketController::class, 'destroy'])->name('ticket.destroy');
 
@@ -70,6 +73,13 @@ Route::get('/ticket/status/{id}/waiting', [StatusController::class, 'waiting'])-
 Route::get('/ticket/status/{id}/opened', [StatusController::class, 'opened'])->name('status.opened');
 Route::get('/ticket/status/{id}/responded', [StatusController::class, 'responded'])->name('status.responded');
 Route::get('/ticket/status/{id}/closed', [StatusController::class, 'closed'])->name('status.closed');
+
+
+
+// PHOTOS;
+Route::get('/wound-photo/create', [PhotoController::class, 'create'])->name('photo.create');
+Route::get('/wound-photo/{id}/show', [PhotoController::class, 'show'])->name('photo.show');
+Route::post('/wound-photo/store', [PhotoController::class, 'store'])->name('photo.store');
 
 
 

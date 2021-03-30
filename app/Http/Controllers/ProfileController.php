@@ -16,6 +16,7 @@ class ProfileController extends Controller
 
     public function __construct()
     {
+        $this->middleware('block_user');
         $this->middleware('auth');
         $this->middleware(['admin'], ['only' => [
             'show',

@@ -52,7 +52,7 @@
                 <a href="{{ route('profile.edit', [Auth::user()->id, active_user_profile(Auth::user()->id)->slug]) }}"><i class="menu-icon flaticon-user"></i> Edit Profile</a>
               </li>
               <li>
-                <a href="#"><i class="menu-icon flaticon-hand-cut"></i> Add Wound Photo</a>
+                <a href="{{ route('photo.create') }}"><i class="menu-icon flaticon-hand-cut"></i> Add Wound Photo</a>
               </li>
             </ul>
           </nav>

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class StatusController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('block_user');
         $this->middleware('auth');
         $this->middleware('admin');
     }
@@ -19,6 +21,7 @@ class StatusController extends Controller
        $ticket->update([
            'status' => 'new',
        ]);
+       Session::put('success', 'Status  has been updated successfully');
        return redirect()->back();
     }
 
@@ -28,6 +31,7 @@ class StatusController extends Controller
        $ticket->update([
            'status' => 'waiting',
        ]);
+       Session::put('success', 'Status  has been updated successfully');
        return redirect()->back();
     }
 
@@ -37,6 +41,7 @@ class StatusController extends Controller
        $ticket->update([
            'status' => 'opened',
        ]);
+       Session::put('success', 'Status  has been updated successfully');
        return redirect()->back();
     }
 
@@ -46,6 +51,7 @@ class StatusController extends Controller
         $ticket->update([
             'status' => 'responded',
         ]);
+        Session::put('success', 'Status  has been updated successfully');
         return redirect()->back();
     }
 
@@ -55,6 +61,7 @@ class StatusController extends Controller
         $ticket->update([
             'status' => 'closed',
         ]);
+        Session::put('success', 'Status  has been updated successfully');
         return redirect()->back();
     }
 

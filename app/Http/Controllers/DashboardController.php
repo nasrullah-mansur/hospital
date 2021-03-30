@@ -10,6 +10,7 @@ class DashboardController extends Controller
 
     public function __construct()
     {
+        $this->middleware('block_user');
         $this->middleware('auth');
         $this->middleware('profile');
     }

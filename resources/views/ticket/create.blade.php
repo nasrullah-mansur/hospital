@@ -1,11 +1,13 @@
 @extends('layouts.app')
+
 @section('content')
 <div class="row">
     <div class="col-lg-12">
     <div class="section-wrap">
         <div class="primary-form">
-        <form action="{{ route('ticket.store') }}" method="POST">
+        <form action="{{ route('ticket.store') }}" class=" " method="POST" enctype="multipart/form-data">
             @csrf
+            
             <div class="form-group">
             </div>
             <div class="form-group">
@@ -30,4 +32,13 @@
     </div>
     </div>
 </div>
+@endsection
+
+@section('custom_js')
+<script>
+    let fileInputBtn = $('#uplodephoto');
+    fileInputBtn.on('change', function() {
+        console.log(fileInputBtn.val())
+    })
+</script>
 @endsection

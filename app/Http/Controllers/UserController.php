@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Avatar;
 use App\Models\User;
+use App\Models\Photo;
 use App\Models\Ticket;
 use App\Models\Profile;
-use Avatar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('block_user');
         $this->middleware('auth');
+        $this->middleware('block_user');
         $this->middleware(['user'], ['only' => [
             'dashboard',
         ]]);
@@ -46,6 +50,10 @@ class UserController extends Controller
             return ucwords($profiles->user->status);
         })
 
+        ->editColumn('age', function ($profiles) {
+            return '<span class="text-center d-block">'. $profiles->age . '</span>';;
+        })
+
         ->editColumn('full_name', function ($profiles) {
             if($profiles->image == null) {
                 $profile_image = Avatar::create($profiles->full_name)->toBase64();
@@ -67,6 +75,14 @@ class UserController extends Controller
             return $profiles->user->email;
         })
 
+        ->addColumn('tickets', function ($profiles) {
+            return '<span class="text-center d-block">'. count(Ticket::where('user_id', $profiles->user_id)->get('id')) . '</span>';
+        })
+
+        ->addColumn('photos', function ($profiles) {
+            return '<span class="text-center d-block">'. count(Photo::where('user_id', $profiles->user_id)->get('id')) . '</span>';
+        })
+
         ->addColumn('action', function ($profiles) {
             if($profiles->user->status == 'active') {
                 $active_route = route('user.block', $profiles->user_id);
@@ -75,9 +91,21 @@ class UserController extends Controller
             }
 
             if($profiles->user->status == 'active') {
-                $active_btn = 'Block User';
+                $active_btn = 'Block Patient';
             } else {
-                $active_btn = 'Active User';
+                $active_btn = 'Active Patient';
+            }
+
+            if(Photo::where('user_id', $profiles->user_id)->count() > 0){
+                $photos_link = '<a class="dropdown-item" href="'. route('photo.show', $profiles->user_id) . '">View Wound</a>';
+            } else {
+                $photos_link = '';
+            }
+
+            if(Ticket::where('user_id', $profiles->user_id)->count() > 0) {
+                $tickets_link = '<a class="dropdown-item" href="'. route('p.tickets', [$profiles->user_id, $profiles->slug]). '">View Tickets</a>';
+            } else {
+                $tickets_link = '';
             }
 
             return '<div class="dropdown">
@@ -86,8 +114,10 @@ class UserController extends Controller
                     </button>
                     <div class="dropdown-menu" >
                     <a class="dropdown-item" href="'. route('profile.show', [$profiles->user_id, $profiles->slug]). '">View Profile</a>
+                    '.  $photos_link .'
+                    '.  $tickets_link .'
                     <a class="dropdown-item" href="'. $active_route .'">'. $active_btn .'</a>
-                    <a class="dropdown-item" href="'. route('user.destroy', $profiles->user_id) .'">Delete Account</a>
+                    <a class="dropdown-item delete-btn" href="javascript:void(0);" data-id="'. $profiles->user_id .'">Delete Account</a>
                     </div>
                 </div>';
         })
@@ -103,15 +133,32 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::where('id', $id)->firstOrFail();
+        $user = User::with('photo')->where('id', $id)->firstOrFail();
         $profile = Profile::where('user_id', $id)->firstOrFail();
         if(Auth::user()->profile->user_role == 1) {
             $user_tickets = Ticket::where('user_id', $id)->get();
             foreach ($user_tickets as  $user_ticket) {
                 $user_ticket->delete();
             }
+
+            $image_path = $profile->image;
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            } 
+
+            if($user->photo->count() > 0) {
+                $photo_items = Photo::where('user_id', $profile->user_id)->get();
+                foreach($photo_items as $photo) {
+                    if (File::exists($photo->image)) {
+                        File::delete($photo->image);
+                    }
+                    $photo->delete();
+                }
+            }
+
             $user->delete();
             $profile->delete();
+            
             Session::put('success', 'Patient has been destroyed successfully');
             return redirect()->route('patients.all');
         } else {

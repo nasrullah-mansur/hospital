@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('block_user');
+        $this->middleware('auth');
+    }
+    
     public function store(Request $request) {
         $request->validate([
             'answer' => 'required'

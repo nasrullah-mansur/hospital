@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Photo;
 use App\Models\Profile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -45,5 +46,9 @@ class User extends Authenticatable
 
     public function profile() {
         return $this->hasOne(Profile::class);
+    }
+
+    public function photo() {
+        return $this->hasMany(Photo::class);
     }
 }

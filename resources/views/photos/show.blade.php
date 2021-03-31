@@ -8,6 +8,7 @@ Wound Photos - {{$name}}
 @section('custom_css')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/css/extensions/sweetalert.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/venobox/venobox.min.css') }}">
+
 @endsection
 @section('content')
 <div class="card">

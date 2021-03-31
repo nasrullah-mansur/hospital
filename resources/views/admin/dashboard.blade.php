@@ -71,6 +71,7 @@ Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
                 <th scope="col"><input class="table-check" type="checkbox" /> Patient Name</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Messege</th>
+                <th scope="col" style="text-align: center;">Wound</th>
                 <th scope="col">Time</th>
                 <th scope="col" colspan="2">Status</th>
                 </tr>
@@ -91,6 +92,7 @@ Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
                     </td>
                     <td>{{ strlen($ticket->subject) > 15 ? substr($ticket->subject, 0, 15) . '..' : $ticket->subject }}</td>
                     <td>{{ strlen($ticket->massage) > 22 ? substr($ticket->massage, 0, 22) . '..' : $ticket->massage }}</td>
+                    <td style="text-align: center;">{{ $ticket->user->photo->count() }}</td>
                     <td>{{ $ticket->created_at->format('h i A') }}</td>
                     <td>{{ ucwords($ticket->status) }}</td>
                     <td>

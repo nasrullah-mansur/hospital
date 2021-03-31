@@ -57,7 +57,7 @@ class TicketAdded extends Notification
     {
         return [
             'id' => auth::user()->id,
-            'massage' => Auth::user()->profile->full_name . 'Submitted a New Ticket',
+            'massage' => Auth::user()->profile->full_name . ' Submitted a New Ticket',
         ];
     }
 }

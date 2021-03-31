@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -114,16 +115,21 @@ class ProfileController extends Controller
         $profile->gender = $request->gender;
         $profile->medical_history = $request->medical_history;
 
+
         if ($request->hasFile('image')) {
+            $image_path = $profile->image;
+            if (File::exists($image_path)) {
+                File::delete($image_path);
+            } 
             $file = $request->file('image');
             $file_path = 'images/profile/';
             $extension = strtolower($file->getClientOriginalExtension());
             $fileName = time() . '-' . 'profile-image' . '.' . $extension;
             $file->move($file_path, $fileName);
             $db_img = $file_path . $fileName;
-
             $profile->image = $db_img;
-        }
+            
+        } 
 
 
         $profile->save();

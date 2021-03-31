@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Photo;
 use App\Models\Answer;
 use App\Models\Ticket;
 use App\Models\Profile;

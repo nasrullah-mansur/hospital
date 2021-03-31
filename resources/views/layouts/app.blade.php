@@ -28,8 +28,7 @@
       }
       
       .pagination {
-        padding-bottom: 30px;
-        padding-top: 30px;
+        padding: 30px;
       }
 
       .pagination li {
@@ -37,6 +36,14 @@
         font-size: 16px;
         text-align: center;
       }
+    @media (max-width: 840px) {
+      .view-ticketing .status-select {
+        position: relative;
+        right:0;
+        top: 0;
+        display: inline-block;
+      }
+    }
     </style>
   </head>
   <body>

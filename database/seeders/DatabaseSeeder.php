@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProfileSeeder::class,
             TicketSeeder::class,
+            PhotoSeeder::class,
+            NotificationSeeder::class,
         ]);
     }
 }

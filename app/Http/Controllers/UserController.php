@@ -128,7 +128,7 @@ class UserController extends Controller
     public function dashboard($id, $slug) {
         $user_profile = Profile::where('user_id', $id)->where('slug', $slug)->firstOrFail();
         $tickets = Ticket::orderBy('created_at', 'DESC')->where('user_id', Auth::user()->id)->limit(8)->get();
-        return view('user.dashboard', compact('user_profile', 'tickets'));
+        return view('user.dashboard', compact('tickets', 'user_profile'));
     }
 
     public function destroy($id)

@@ -53,7 +53,6 @@
                 <div class="col-md-6">
                   <div class="registration-info text-center">
                     <img class="registration-img" src="{{ asset('assets/images/registration-image-2.png') }}" alt="registration-image" />
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                   </div>
                 </div>
               </div>

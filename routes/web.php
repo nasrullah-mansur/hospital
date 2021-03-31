@@ -81,6 +81,8 @@ Route::get('/wound-photo/create', [PhotoController::class, 'create'])->name('pho
 Route::get('/wound-photo/{id}/show', [PhotoController::class, 'show'])->name('photo.show');
 Route::post('/wound-photo/store', [PhotoController::class, 'store'])->name('photo.store');
 Route::get('/wound-photo/{id}/destroy', [PhotoController::class, 'destroy'])->name('photo.destroy');
+Route::get('/wound-photo/all-user', [PhotoController::class, 'user_has_wound_view'])->name('user.wound.photo');
+Route::get('/wound-photo/all-user/get', [PhotoController::class, 'user_has_wound_get'])->name('user.wound.photo.get');
 
 
 

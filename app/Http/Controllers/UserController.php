@@ -51,7 +51,7 @@ class UserController extends Controller
         })
 
         ->editColumn('age', function ($profiles) {
-            return '<span class="text-center d-block">'. $profiles->age . '</span>';;
+            return '<span class="text-center d-block">'. $profiles->age . '</span>';
         })
 
         ->editColumn('full_name', function ($profiles) {
@@ -61,7 +61,7 @@ class UserController extends Controller
                 $profile_image = asset($profiles->image);
             }
 
-        return '<div class="patient-area">
+            return '<div class="patient-area">
                 <div class="media patient-info">
                     <img src="'. $profile_image .'" class="mr-3 patient-img" alt="patient" />
                     <div class="media-body">

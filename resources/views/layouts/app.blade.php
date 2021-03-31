@@ -51,13 +51,14 @@
       <!-- main-sideba area start here  -->
       <aside class="main-sidebar">
         <div class="sidemenu-logo">
-          <a href="index.html"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" /></a>
+          <a href="{{ route('dashboard') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" /></a>
         </div>
         <div class="main-sidebar-body">
           <nav class="main-menu">
             @if(Auth::user()->profile->user_role == 1)
             <ul id="metismenu">
               <li class="{{ Route::is('admin.dashboard') ? 'current-menu-item' : '' }}"><a href="{{ route('dashboard') }}"><i class="menu-icon flaticon-dashboard"></i> Dashboard</a></li>
+              <li class="{{ Route::is('admin.dashboard') ? 'current-menu-item' : '' }}"><a href="{{ route('dashboard') }}"><i class="menu-icon flaticon-dashboard"></i> Wound Photos</a></li>
               <li class="{{ Route::is('ticket.index') ? 'mm-active opened' : '' }}">
                 <a class="has-arrow" href="#"><i class="menu-icon flaticon-support"></i> Ticketing</a>
                 <ul>

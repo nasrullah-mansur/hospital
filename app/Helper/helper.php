@@ -1,5 +1,6 @@
 <?php
 use App\Models\User;
+use App\Models\Theme;
 use App\Models\Profile;
 
     const LOGIN_USER = 1;
@@ -9,7 +10,17 @@ use App\Models\Profile;
         return Profile::where('user_id', $id)->firstOrFail();
     }
 
-    const THEME_NAME = 'Consultation System';
+    function ThemeName() {
+        return Theme::first()->theme_name;
+    }
+
+    function ThemeFavicon() {
+        return Theme::first()->favicon;
+    }
+
+    function ThemeLogo() {
+        return Theme::first()->logo;
+    }
 
     function notification_image($id) {
         $noti_user_profile = User::where('id', $id)->firstOrFail()->profile;

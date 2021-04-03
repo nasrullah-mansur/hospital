@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TicketSeeder::class,
             PhotoSeeder::class,
             NotificationSeeder::class,
+            ThemeSeeder::class,
         ]);
     }
 }

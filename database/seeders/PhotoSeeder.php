@@ -14,51 +14,6 @@ class PhotoSeeder extends Seeder
      */
     public function run()
     {
-        
-        Photo::create([
-            'image' => 'images/wound/1617168877-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168881-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168885-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168889-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168892-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168892-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168900-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168903-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
-        Photo::create([
-            'image' => 'images/wound/1617168908-wound-image.jpg',
-            'user_id' => 2
-        ]);
-
+        //
     }
 }

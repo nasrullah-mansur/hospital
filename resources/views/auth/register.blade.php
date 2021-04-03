@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ THEME_NAME }} - Register</title>
+    <title>{{ ThemeName() }} - Register</title>
     <meta name="description" content="Consultation System" />
     <meta name="keywords" content="Consultation System" />
     <meta name="author" content="Consultation System" />
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset(ThemeFavicon()) }}" type="image/x-icon">
     <!-- fonts file -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- css file  -->
@@ -35,15 +35,27 @@
                         @csrf
                       <div class="form-group">
                         <input type="text" class="form-control" id="yname" name="full_name" placeholder="Name" />
+                        @if($errors->has('full_name'))
+                        <span style="color: red; font-size: 14px;">{{ $errors->first('full_name') }}</span>
+                        @endif
                       </div>
                       <div class="form-group">
                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number" />
+                        @if($errors->has('phone'))
+                        <span style="color: red; font-size: 14px;">{{ $errors->first('phone') }}</span>
+                        @endif
                       </div>
                       <div class="form-group">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email" />
+                        @if($errors->has('email'))
+                        <span style="color: red; font-size: 14px;">{{ $errors->first('email') }}</span>
+                        @endif
                       </div>
                       <div class="form-group">
                         <input type="password" class="form-control" id="text" name="password" placeholder="Password" />
+                        @if($errors->has('password'))
+                        <span style="color: red; font-size: 14px;">{{ $errors->first('password') }}</span>
+                        @endif
                       </div>
                       <p class="form-privacy-text">By signing up, I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a></p>
                       <button type="submit" class="registration-btn">Create New Account</button>

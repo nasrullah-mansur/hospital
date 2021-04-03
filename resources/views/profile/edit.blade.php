@@ -6,7 +6,6 @@
 {{$profile->full_name}}
 @endsection
 @section('content')
-@section('content')
 <div class="row">
     <div class="col-lg-12">
     <div class="section-wrap">
@@ -36,13 +35,15 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group">
-                    <label class="label-text" for="phonenumber">Phone Number</label>
-                    <input type="text" class="form-control" id="phonenumber" name="phone" name="phone" placeholder="+88 000 444 666" value="{{ old('phone') ? old('phone') : $profile->phone }}" />
-                    @if($errors->has('phone'))
-                    <span style="color: red;">{{ $errors->first('phone') }}</span>
-                    @endif
-                    </div>
+                <div class="form-group">
+                    <label class="label-text" for="Gender">Gender</label>
+                    <select class="form-control" id="gender" name="gender">
+                        <option>Gender</option>
+                        <option value="male" {{ $profile->gender == 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ $profile->gender == 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="other" {{ $profile->gender == 'other' ? 'selected' : '' }}>Other</option>
+                    </select>
+                </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -73,29 +74,13 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="label-text" for="Age">Age</label>
-                                <input type="number" class="form-control" id="Age" name="age" placeholder="38 Years" value="{{ old('age') ? old('age') : $profile->age }}" />
-                                @if($errors->has('age'))
-                                <span style="color: red;">{{ $errors->first('age') }}</span>
-                                @endif
-                                </div>
-                        </div>
-    
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                            <label class="label-text" for="Gender">Gender</label>
-                            <select class="form-control" id="gender" name="gender">
-                                <option>Gender</option>
-                                <option value="male" {{ $profile->gender == 'male' ? 'selected' : '' }}>Male</option>
-                                <option value="female" {{ $profile->gender == 'female' ? 'selected' : '' }}>Female</option>
-                                <option value="other" {{ $profile->gender == 'other' ? 'selected' : '' }}>Other</option>
-                            </select>
+                            <label class="label-text" for="Age">Age</label>
+                            <input type="number" class="form-control" id="Age" name="age" placeholder="38 Years" value="{{ old('age') ? old('age') : $profile->age }}" />
+                            @if($errors->has('age'))
+                            <span style="color: red;">{{ $errors->first('age') }}</span>
+                            @endif
                             </div>
-                        </div>
-                    </div>
                 </div>
 
                 @if(Auth::user()->profile->user_role == 0)

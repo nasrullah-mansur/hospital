@@ -78,7 +78,6 @@ class ProfileController extends Controller
             if(Auth::user()->profile->user_role == 1) {
                 $request->validate([
                     'full_name' => 'required|string|max:255',
-                    'phone' => 'nullable|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                     'birth_date' => 'nullable|max:255',
                     'age' => 'nullable|numeric',
                     'address' => 'nullable',
@@ -92,7 +91,6 @@ class ProfileController extends Controller
             } else {
                 $request->validate([
                     'full_name' => 'required|string|max:255',
-                    'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
                     'birth_date' => 'required|max:255',
                     'age' => 'required|numeric',
                     'address' => 'required',
@@ -125,6 +123,7 @@ class ProfileController extends Controller
             $file_path = 'images/profile/';
             $extension = strtolower($file->getClientOriginalExtension());
             $fileName = time() . '-' . 'profile-image' . '.' . $extension;
+            $upload_path = 'public/images/profile/';
             $file->move($file_path, $fileName);
             $db_img = $file_path . $fileName;
             $profile->image = $db_img;

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title')
- - All Patient has Wond Photo
+ - All Patient has Wound Photo
 @endsection
 @section('heading')
-All Patients Wond Photo
+All Patient Wound Photos
 @endsection
 @section('custom_css')
 <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/css/extensions/sweetalert.css') }}">

@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ THEME_NAME }} @yield('title')</title>
+    <title>{{ ThemeName() }} @yield('title')</title>
     <meta name="description" content="Consultation System" />
     <meta name="keywords" content="Consultation System" />
     <meta name="author" content="Consultation System" />
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset(ThemeFavicon()) }}" type="image/x-icon">
     <!-- fonts file -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- css file  -->
     <link rel="stylesheet" href="{{ asset('assets/css/plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/venobox/venobox.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/plugins/extensions/toastr.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/css/extensions/toastr.css') }}">
     @yield('custom_css')
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
@@ -36,6 +37,7 @@
         font-size: 16px;
         text-align: center;
       }
+      
     @media (max-width: 840px) {
       .view-ticketing .status-select {
         position: relative;
@@ -51,14 +53,14 @@
       <!-- main-sideba area start here  -->
       <aside class="main-sidebar">
         <div class="sidemenu-logo">
-          <a href="{{ route('dashboard') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="logo" /></a>
+          <a href="{{ route('dashboard') }}"><img src="{{ asset(ThemeLogo()) }}" alt="logo" /></a>
         </div>
         <div class="main-sidebar-body">
           <nav class="main-menu">
             @if(Auth::user()->profile->user_role == 1)
             <ul id="metismenu">
               <li class="{{ Route::is('admin.dashboard') ? 'current-menu-item' : '' }}"><a href="{{ route('dashboard') }}"><i class="menu-icon flaticon-dashboard"></i> Dashboard</a></li>
-              <li class="{{ Route::is('admin.dashboard') ? 'current-menu-item' : '' }}"><a href="{{ route('dashboard') }}"><i class="menu-icon flaticon-dashboard"></i> Wound Photos</a></li>
+
               <li class="{{ Route::is('ticket.index') ? 'mm-active opened' : '' }}">
                 <a class="has-arrow" href="#"><i class="menu-icon flaticon-support"></i> Ticketing</a>
                 <ul>
@@ -69,8 +71,12 @@
               <li class="{{ Route::is('patients.all') ? 'current-menu-item' : '' }}">
                 <a href="{{ route('patients.all') }}"><i class="menu-icon flaticon-support"></i>Patient List</a>
               </li>
+              <li class="{{ Route::is('user.wound.photo') ? 'current-menu-item' : '' }}"><a href="{{ route('user.wound.photo') }}"><i class="menu-icon flaticon-hand-cut"></i> Wound Photos</a></li>
               <li class="{{ Route::is('profile.edit') ? 'current-menu-item' : '' }}">
                 <a href="{{ route('profile.edit', [Auth::user()->id, active_user_profile(Auth::user()->id)->slug]) }}"><i class="menu-icon flaticon-user"></i> Edit Profile</a>
+              </li>
+              <li class="{{ Route::is('theme.edit') ? 'current-menu-item' : '' }}">
+                <a href="{{ route('theme.edit') }}"><i class="menu-icon flaticon-user"></i> Setting</a>
               </li>
             </ul>
             @else
@@ -93,7 +99,7 @@
                   <li class="{{ Route::is('photo.create') ? 'current-menu-item' : '' }}"><a href="{{ route('photo.create') }}">Add Wound Photo</a></li>
                 </ul>
               </li>
-              
+
               <li class="{{ Route::is('profile.edit') ? 'current-menu-item' : '' }}">
                 <a href="{{ route('profile.edit', [Auth::user()->id, active_user_profile(Auth::user()->id)->slug]) }}"><i class="menu-icon flaticon-user"></i> Edit Profile</a>
               </li>
@@ -146,9 +152,9 @@
       </div>
       <!-- content-body end here  -->
     </main>
-    <!-- <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script> -->
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/venobox/venobox.min.js') }}"></script>
     <script src="{{ asset('admin/vendors/js/extensions/toastr.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -169,7 +175,6 @@
         }
       }
     </script>
-
     @yield('custom_js')
     @if(Session::has('success'))
     <script>

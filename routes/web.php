@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TicketController;
@@ -84,6 +85,8 @@ Route::get('/wound-photo/{id}/destroy', [PhotoController::class, 'destroy'])->na
 Route::get('/wound-photo/all-user', [PhotoController::class, 'user_has_wound_view'])->name('user.wound.photo');
 Route::get('/wound-photo/all-user/get', [PhotoController::class, 'user_has_wound_get'])->name('user.wound.photo.get');
 
-
+// THEME SETTING;
+Route::get('/theme/setting', [ThemeController::class, 'edit'])->name('theme.edit');
+Route::post('/theme/setting/change', [ThemeController::class, 'update'])->name('theme.update');
 
 

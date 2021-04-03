@@ -21,7 +21,6 @@ All Tickets
                         <th>Patient Name</th>
                         <th>Subject</th>
                         <th>Messege</th>
-                        <th style="text-align: center;">Wound Photo</th>
                         <th>Date</th>
                         <th>Status</th>
                         <th></th>
@@ -50,7 +49,6 @@ All Tickets
                     { data: "name" },  
                     { data: "subject" }, 
                     { data: "massage" }, 
-                    { data: "photos" }, 
                     { data: "created_at" }, 
                     { data: "status" }, 
                     { data: "action" }, 

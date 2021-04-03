@@ -32,9 +32,9 @@ class AdminController extends Controller
         $admin_profile = Profile::where('user_id', $id)->where('slug', $slug)->firstOrFail();
         $tickets = Ticket::with('user', 'answer')->orderBy('created_at', 'DESC')->limit(6)->get();
         $today_tickets = Ticket::whereDate('created_at', Carbon::today())->count();
-        $today_reply = Answer::where('p_id', 0)->whereDate('created_at', Carbon::today())->count();
+        $today_reply = Answer::where('p_id', 0)->whereDate('updated_at', Carbon::today())->count();
         $today_due = $today_tickets - $today_reply;
-        $today_hold = Ticket::where('status', 'waiting')->whereDate('created_at', Carbon::today())->count();
+        $today_hold = Ticket::where('status', 'waiting')->whereDate('updated_at', Carbon::today())->count();
         return view('admin.dashboard', compact('notifications', 'admin_profile', 'tickets', 'today_tickets', 'today_reply', 'today_due','today_hold'));
     }
 }

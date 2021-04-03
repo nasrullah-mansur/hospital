@@ -24,5 +24,9 @@ class Ticket extends Model
     {
         return $this->hasMany(Answer::class, 'ticket_id');
     }
+
+    public function photo() {
+        return $this->hasMany(Photo::class);
+    }
 }
 

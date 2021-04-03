@@ -18,9 +18,8 @@ class StatusController extends Controller
     public function new($id)
     {
        $ticket = Ticket::where('id', $id)->firstOrFail();
-       $ticket->update([
-           'status' => 'new',
-       ]);
+       $ticket->status = 'new';
+       $ticket->save();
        Session::put('success', 'Status  has been updated successfully');
        return redirect()->back();
     }
@@ -28,29 +27,26 @@ class StatusController extends Controller
     public function waiting($id)
     {
         $ticket = Ticket::where('id', $id)->firstOrFail();
-       $ticket->update([
-           'status' => 'waiting',
-       ]);
-       Session::put('success', 'Status  has been updated successfully');
-       return redirect()->back();
+        $ticket->status = 'waiting';
+        $ticket->save();
+        Session::put('success', 'Status  has been updated successfully');
+        return redirect()->back();
     }
 
     public function opened($id)
     {
         $ticket = Ticket::where('id', $id)->firstOrFail();
-       $ticket->update([
-           'status' => 'opened',
-       ]);
-       Session::put('success', 'Status  has been updated successfully');
-       return redirect()->back();
+        $ticket->status = 'opened';
+        $ticket->save();
+        Session::put('success', 'Status  has been updated successfully');
+        return redirect()->back();
     }
 
     public function responded($id)
     {
         $ticket = Ticket::where('id', $id)->firstOrFail();
-        $ticket->update([
-            'status' => 'responded',
-        ]);
+        $ticket->status = 'responded';
+        $ticket->save();
         Session::put('success', 'Status  has been updated successfully');
         return redirect()->back();
     }
@@ -58,9 +54,8 @@ class StatusController extends Controller
     public function closed($id)
     {
         $ticket = Ticket::where('id', $id)->firstOrFail();
-        $ticket->update([
-            'status' => 'closed',
-        ]);
+        $ticket->status = 'closed';
+        $ticket->save();
         Session::put('success', 'Status  has been updated successfully');
         return redirect()->back();
     }

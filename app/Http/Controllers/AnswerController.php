@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Photo;
 use App\Models\Answer;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -18,6 +19,9 @@ class AnswerController extends Controller
     }
     
     public function store(Request $request) {
+
+        // return $request;
+
         $request->validate([
             'answer' => 'required'
         ]);
@@ -28,6 +32,26 @@ class AnswerController extends Controller
         $answer->answer = $request->answer;
         $answer->user_id = Auth::user()->id;
         $answer->save();
+
+        if($request->has('file')) {
+            $files = $request->file;
+            foreach ($files as $file) {
+                $photo = new Photo();
+                $file = $file;
+                $file_path = 'images/wound/';
+                $extension = strtolower($file->getClientOriginalExtension());
+                $fileName = time() . '-' . 'wound-image' . rand(0,5) . '.' . $extension;
+                $upload_path = '/public/images/wound/';
+                $file->move($file_path, $fileName);
+                $db_img = $file_path . $fileName;
+
+                $photo->image = $db_img;
+                $photo->user_id = Auth::user()->id;
+                $photo->answer_id = $answer->id;
+                $photo->save();
+            }
+        }
+
         if($request->p_id == 0) {
             $data = [
                 'name' => Auth::user()->profile->full_name,

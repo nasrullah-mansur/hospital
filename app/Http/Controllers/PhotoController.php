@@ -28,7 +28,7 @@ class PhotoController extends Controller
     public function show($id)
     {
         if(Auth::user()->profile->user_role == 1 || Auth::user()->id == $id) {
-            $photos = Photo::where('user_id', $id)->paginate(8);
+            $photos = Photo::where('user_id', $id)->where('ticket_id', null)->where('answer_id', null)->paginate(8);
             $name = User::where('id', $id)->firstOrFail()->profile->full_name;
             return view('photos.show', compact('photos', 'name'));
         } else {
@@ -49,9 +49,9 @@ class PhotoController extends Controller
             $file_path = 'images/wound/';
             $extension = strtolower($file->getClientOriginalExtension());
             $fileName = time() . '-' . 'wound-image' . '.' . $extension;
+            $upload_path = 'public/images/wound/';
             $file->move($file_path, $fileName);
             $db_img = $file_path . $fileName;
-
             $photo->image = $db_img;
         }
 
@@ -80,7 +80,6 @@ class PhotoController extends Controller
 
     public function user_has_wound_view()
     {
-        $profiles = User::has('photo')->with('profile')->get();
         return view('photos.photo_user');
     }
 

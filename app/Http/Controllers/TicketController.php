@@ -129,9 +129,7 @@ class TicketController extends Controller
                                 </div>
                             </div>';
                 })
-                ->addColumn('photos', function ($tickets){
-                    return '<span class="d-block text-center"> ' . Photo::where('user_id', $tickets->user_id)->count() . ' </span>';
-                })
+               
 
                 ->editColumn('id', function ($tickets) {
                     return '#'. $tickets->id;
@@ -160,18 +158,12 @@ class TicketController extends Controller
                 })
                
                ->addColumn('action', function ($tickets){
-                   if(Photo::where('user_id', $tickets->user_id)->count() > 0) {
-                        $wound_link = '<a class="dropdown-item" href="'. route('photo.show', $tickets->user_id) . '">Wound Photos</a>';
-                   } else {
-                    $wound_link = '';
-                   }
                     return '<div class="dropdown">
                     <button class="btn"  data-toggle="dropdown">
                       <i class="fas fa-ellipsis-v"></i>
                     </button>
                     <div class="dropdown-menu" >
                       <a class="dropdown-item" href="'. route('ticket.show', $tickets->id). '">View Ticket</a>
-                      '. $wound_link .'
                       <a class="dropdown-item delete-btn" href="javascript:void(0);" data-id="'. $tickets->id .'">Delete Ticket</a>
                     </div>
                   </div>';
@@ -184,20 +176,14 @@ class TicketController extends Controller
     }
 
     
-
     public function show($id){
-        if(Auth::user()->profile->user_role == 1){
-            $ticket = Ticket::with('answer', 'user')->where('id', $id)->firstOrFail();
-            $profile = Profile::where('user_id', $id)->firstOrFail();
+        $ticket = Ticket::with('answer', 'user', 'photo',)->where('id', $id)->firstOrFail();
+        $profile = Profile::where('user_id', $id)->firstOrFail();
+
+        if(Auth::user()->profile->user_role == 1 || $ticket->user_id == Auth::user()->id) {
             return view('ticket.view', compact('ticket', 'profile'));
         } else {
-            $ticket = Ticket::with('answer', 'user')->where('id', $id)->firstOrFail();
-            if($ticket->user_id != Auth::user()->id) {
-                abort(404);
-            } else {
-                $profile = Profile::where('user_id', $id)->firstOrFail();
-                return view('ticket.view', compact('ticket', 'profile'));
-            }
+            abort(404);
         }
     }
 
@@ -216,6 +202,25 @@ class TicketController extends Controller
         $ticket->subject = $request->subject;
         $ticket->massage = $request->massage;
         $ticket->save();
+
+        if($request->has('file')) {
+            $files = $request->file;
+            foreach ($files as $file) {
+                $photo = new Photo();
+                $file = $file;
+                $file_path = 'images/wound/';
+                $extension = strtolower($file->getClientOriginalExtension());
+                $fileName = time() . '-' . 'wound-image' . rand(0,5) . '.' . $extension;
+                $upload_path = 'public/images/wound/';
+                $file->move($file_path, $fileName);
+                $db_img = $file_path . $fileName;
+
+                $photo->image = $db_img;
+                $photo->user_id = Auth::user()->id;
+                $photo->ticket_id = $ticket->id;
+                $photo->save();
+            }
+        }
         Notification::send(Auth::user(), new TicketAdded());
         Session::put('success', 'Ticket  has been submitted successfully');
         return redirect()->route('dashboard');

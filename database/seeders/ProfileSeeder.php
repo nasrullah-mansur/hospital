@@ -17,10 +17,10 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 1,
             'user_role' => 1,
-            'full_name' => 'Nasrullah Mansur',
+            'full_name' => 'Doctor Name',
             'image' => 'images/profile/1617171121-profile-image.jpg',
-            'slug' => 'nasrullah-mansur',
-            'phone' => '+881728619733',
+            'slug' => 'doctor-name',
+            'phone' => '++88 017 1234 578',
             'gender' => 'Male',
             'birth_date' => '12,12,1995',
             'age' => '26',
@@ -32,7 +32,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 2,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => 'images/profile/1617171688-profile-image.jpg',
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -47,7 +47,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 3,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -62,7 +62,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 4,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -77,7 +77,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 5,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -92,7 +92,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 6,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -107,7 +107,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 7,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -122,7 +122,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 8,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -137,7 +137,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 9,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -152,7 +152,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 10,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -167,7 +167,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 11,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -182,7 +182,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 12,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',
@@ -197,7 +197,7 @@ class ProfileSeeder extends Seeder
         Profile::create([
             'user_id' => 13,
             'user_role' => 0,
-            'full_name' => 'Ahmed Ahnaf',
+            'full_name' => 'Patient',
             'image' => null,
             'slug' => 'ahmed-ahnaf',
             'phone' => '+88 017 1234 578',

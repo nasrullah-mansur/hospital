@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ THEME_NAME }} - Complete Profile</title>
+    <title>{{ ThemeName() }} - Complete Profile</title>
     <meta name="description" content="Consultation System" />
     <meta name="keywords" content="Consultation System" />
     <meta name="author" content="Consultation System" />
     <!-- Place favicon.ico in the root directory -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset(ThemeFavicon()) }}" type="image/x-icon">
     <!-- fonts file -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- css file  -->

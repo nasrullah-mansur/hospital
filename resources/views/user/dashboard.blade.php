@@ -5,6 +5,9 @@
 @section('heading')
 Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
 @endsection
+@section('custom_css')
+<link rel="stylesheet" type="text/css" href="{{ asset('admin/vendors/css/extensions/sweetalert.css') }}">
+@endsection
 @section('content')
 <div class="row">
     <div class="col-lg-6">
@@ -89,7 +92,7 @@ Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
                             </button>
                             <div class="dropdown-menu" >
                             <a class="dropdown-item" href="{{ route('ticket.show', $ticket->id) }}">View</a>
-                            <a class="dropdown-item" href="{{ route('ticket.destroy', $ticket->id) }}">Delete</a>
+                            <a class="dropdown-item delete-btn" data-id="{{ $ticket->id }}" href="javascript:void(0);">Delete</a>
                             </div>
                         </div>
                         </td>
@@ -104,4 +107,43 @@ Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
     </div>
 </div>
 
+@endsection
+
+@section('custom_js')
+<script src="{{ asset('admin/vendors/js/extensions/sweetalert.min.js') }}" type="text/javascript"></script>
+
+<script>
+$('.delete-btn').on('click',function(e){
+    e.preventDefault();
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this content!",
+        icon: "warning",
+        showCancelButton: true,
+        buttons: {
+            cancel: {
+                text: "No, cancel please!",
+                value: null,
+                visible: true,
+                className: "btn-warning",
+                closeModal: false,
+            },
+            confirm: {
+                text: "Yes, delete it!",
+                value: true,
+                visible: true,
+                className: "",
+                closeModal: false
+            }
+        }
+    }).then(isConfirm => {
+        if (isConfirm) {
+            swal("Deleted!", "Your content has been deleted.", "success");
+            window.location.replace(`/ticket/${e.target.getAttribute('data-id')}/destroy`);
+        } else {
+            swal("Cancelled", "Your content is safe", "error");
+        }
+    });
+});
+</script>
 @endsection

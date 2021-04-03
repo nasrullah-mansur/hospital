@@ -24,11 +24,15 @@ Create new ticket
             @endif
             </div>
             <div class="form-group">
-            <label class="label-text" for="Messege">Messege</label>
-            <textarea class="form-control message-box" id="Messege" name="massage" placeholder="Write your messege here"></textarea>
-            @if($errors->has('massage'))
-            <span style="color: red;">{{ $errors->first('massage') }}</span>
-            @endif
+                <label class="label-text" for="Messege">Messege</label>
+                <textarea class="form-control message-box" id="Messege" name="massage" placeholder="Write your messege here"></textarea>
+                @if($errors->has('massage'))
+                <span style="color: red;">{{ $errors->first('massage') }}</span>
+                @endif
+            </div>
+            <div class="form-group">
+                <label class="label-text" for="Messege">Attach File</label>
+                <input type="file" class="form-control" name="file[]" multiple placeholder="Enter Name" />
             </div>
             <div class="form-button text-right">
             <button type="submit" class="primary-btn">Submit Ticketing</button>

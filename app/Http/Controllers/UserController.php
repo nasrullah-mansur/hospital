@@ -96,11 +96,6 @@ class UserController extends Controller
                 $active_btn = 'Active Patient';
             }
 
-            if(Photo::where('user_id', $profiles->user_id)->count() > 0){
-                $photos_link = '<a class="dropdown-item" href="'. route('photo.show', $profiles->user_id) . '">View Wound</a>';
-            } else {
-                $photos_link = '';
-            }
 
             if(Ticket::where('user_id', $profiles->user_id)->count() > 0) {
                 $tickets_link = '<a class="dropdown-item" href="'. route('p.tickets', [$profiles->user_id, $profiles->slug]). '">View Tickets</a>';
@@ -114,7 +109,6 @@ class UserController extends Controller
                     </button>
                     <div class="dropdown-menu" >
                     <a class="dropdown-item" href="'. route('profile.show', [$profiles->user_id, $profiles->slug]). '">View Profile</a>
-                    '.  $photos_link .'
                     '.  $tickets_link .'
                     <a class="dropdown-item" href="'. $active_route .'">'. $active_btn .'</a>
                     <a class="dropdown-item delete-btn" href="javascript:void(0);" data-id="'. $profiles->user_id .'">Delete Account</a>

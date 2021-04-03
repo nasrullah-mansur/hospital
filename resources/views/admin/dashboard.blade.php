@@ -35,8 +35,8 @@ Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
         <div class="card-icon">
             <i class="flaticon-calendar"></i>
         </div>
-        <h4>Due Today</h4>
-        <h2 class="counter">{{ $today_due }}</h2>
+        <h4>Pending Today</h4>
+        <h2 class="counter">{{ $today_due < 0 ? 0 : $today_due }}</h2>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
@@ -71,8 +71,8 @@ Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
                 <th scope="col"><input class="table-check" type="checkbox" /> Patient Name</th>
                 <th scope="col">Subject</th>
                 <th scope="col">Messege</th>
-                <th scope="col" style="text-align: center;">Wound</th>
-                <th scope="col">Time</th>
+                
+                <th scope="col">Date/Time</th>
                 <th scope="col" colspan="2">Status</th>
                 </tr>
             </thead>
@@ -92,8 +92,8 @@ Dashboard : {{ ucwords(Auth::user()->profile->full_name) }}
                     </td>
                     <td>{{ strlen($ticket->subject) > 15 ? substr($ticket->subject, 0, 15) . '..' : $ticket->subject }}</td>
                     <td>{{ strlen($ticket->massage) > 22 ? substr($ticket->massage, 0, 22) . '..' : $ticket->massage }}</td>
-                    <td style="text-align: center;">{{ $ticket->user->photo->count() }}</td>
-                    <td>{{ $ticket->created_at->format('h i A') }}</td>
+                    
+                    <td>{{ $ticket->created_at->format('d M y / h i A') }}</td>
                     <td>{{ ucwords($ticket->status) }}</td>
                     <td>
                         <div class="dropdown">
